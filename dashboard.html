@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Firebase Auth</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dashboard</h1>
+            <nav id="navbar">
+                <a href="index.html">Home</a>
+                <span id="userEmail" class="user-info"></span>
+                <button id="logoutBtn" class="btn btn-sm btn-danger">Logout</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Loading state -->
+            <div id="loadingState" class="loading-state">
+                <p>Loading your dashboard...</p>
+            </div>
+
+            <!-- Authenticated content -->
+            <div id="dashboardContent" class="dashboard-content hidden">
+                <div class="welcome-section">
+                    <h2>Welcome to your Dashboard!</h2>
+                    <div id="userProfile" class="user-profile">
+                        <!-- User profile info will be populated here -->
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Profile Management</h3>
+                        <p>Update your profile information</p>
+                        <button id="editProfileBtn" class="btn btn-primary">Edit Profile</button>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Account Security</h3>
+                        <p>Manage your password and security settings</p>
+                        <button id="changePasswordBtn" class="btn btn-secondary">Change Password</button>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Email Verification</h3>
+                        <div id="verificationStatus">
+                            <!-- Verification status will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Edit Modal -->
+                <div id="profileModal" class="modal hidden">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Edit Profile</h3>
+                            <button id="closeModal" class="close-btn">&times;</button>
+                        </div>
+                        <form id="profileForm" class="modal-form">
+                            <div class="form-group">
+                                <label for="newDisplayName">Display Name</label>
+                                <input type="text" id="newDisplayName" name="newDisplayName" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="newEmail">Email Address</label>
+                                <input type="email" id="newEmail" name="newEmail" required>
+                                <small class="form-hint">Changing email will require re-verification</small>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" id="cancelEdit" class="btn btn-secondary">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unauthenticated state -->
+            <div id="unauthenticatedState" class="auth-required hidden">
+                <h2>Authentication Required</h2>
+                <p>Please sign in to access your dashboard.</p>
+                <a href="login.html" class="btn btn-primary">Sign In</a>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>
