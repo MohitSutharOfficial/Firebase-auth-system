@@ -7,15 +7,23 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Firebase Authentication Demo</h1>
-            <nav id="navbar">
-                <!-- Navigation will be dynamically updated based on auth state -->
-            </nav>
-        </header>
+    <div class="page-wrapper light-page">
+        <div class="page-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <div class="brand-icon">🔥</div>
+                        <span>Firebase Auth</span>
+                    </div>
+                    <nav id="navbar">
+                        <!-- Navigation will be dynamically updated based on auth state -->
+                    </nav>
+                </div>
+            </div>
+        </div>
 
-        <main>
+        <div class="page-main">
+            <div class="container">
             <div id="welcomeSection" class="auth-section">
                 <h2>Welcome to Our App</h2>
                 <p>Please sign in or create an account to continue.</p>
@@ -33,7 +41,8 @@
                     <button id="logoutBtn" class="btn btn-danger">Logout</button>
                 </div>
             </div>
-        </main>
+            </div>
+        </div>
     </div>
 
     <!-- Firebase SDK -->

@@ -7,59 +7,85 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Welcome Back</h1>
-            <a href="index.html" class="back-link">← Back to Home</a>
-        </header>
-
-        <main>
-            <div class="auth-form-container">
-                <form id="loginForm" class="auth-form">
-                    <h2>Sign In</h2>
-                    
-                    <div id="errorMessage" class="error-message hidden"></div>
-                    <div id="successMessage" class="success-message hidden"></div>
-
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
+    <div class="page-wrapper auth-page">
+        <div class="page-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <div class="brand-icon">🔥</div>
+                        <span>Firebase Auth</span>
                     </div>
+                    <a href="index.html" class="back-link">Back to Home</a>
+                </div>
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
+        <main class="page-main">
+            <div class="container">
+                <div class="auth-form-container">
+                    <form id="loginForm" class="auth-form">
+                        <div class="auth-form-header">
+                            <h1 class="auth-form-title">Welcome Back</h1>
+                            <p class="auth-form-subtitle">Sign in to your account to continue</p>
+                        </div>
+                        
+                        <div id="errorMessage" class="alert alert-error hidden"></div>
+                        <div id="successMessage" class="alert alert-success hidden"></div>
 
-                    <div class="form-group">
-                        <label class="checkbox-label">
+                        <div class="form-group">
+                            <label for="email" class="form-label required">Email Address</label>
+                            <div class="input-group">
+                                <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+                                <span class="input-icon">📧</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="form-label required">Password</label>
+                            <div class="input-group">
+                                <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+                                <span class="input-icon">🔒</span>
+                                <button type="button" class="password-toggle" id="passwordToggle">👁️</button>
+                            </div>
+                        </div>
+
+                        <div class="form-checkbox">
                             <input type="checkbox" id="rememberMe" name="rememberMe">
-                            Remember me
-                        </label>
-                    </div>
+                            <label for="rememberMe">Remember me for 30 days</label>
+                        </div>
 
-                    <button type="submit" class="btn btn-primary" id="loginBtn">
-                        <span class="btn-text">Sign In</span>
-                        <span class="loading-spinner hidden">Signing in...</span>
-                    </button>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-block btn-lg" id="loginBtn">
+                                <span class="btn-text">Sign In to Account</span>
+                                <span class="loading-spinner hidden">Signing in...</span>
+                            </button>
+                        </div>
 
-                    <div class="form-footer">
-                        <p><a href="reset-password.html">Forgot your password?</a></p>
-                        <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
-                    </div>
-                </form>
+                        <div class="form-divider">
+                            <span>or continue with</span>
+                        </div>
 
-                <!-- Social Login Options (Optional) -->
-                <div class="social-login">
-                    <div class="divider">
-                        <span>or</span>
-                    </div>
-                    <button id="googleSignIn" class="btn btn-google">
-                        <span>Continue with Google</span>
-                    </button>
+                        <!-- Google Sign-In Button -->
+                        <div class="form-actions">
+                            <button type="button" id="googleSignIn" class="btn btn-google btn-block btn-lg">
+                                <span>Continue with Google</span>
+                            </button>
+                        </div>
+
+                        <div class="form-footer">
+                            <p><a href="reset-password.html">Forgot your password?</a></p>
+                            <p>Don't have an account? <a href="signup.html">Create one here</a></p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </main>
+
+        <footer class="page-footer">
+            <div class="container">
+                <p>&copy; 2025 Firebase Authentication System. Secure login powered by Firebase.</p>
+            </div>
+        </footer>
     </div>
 
     <script type="module" src="js/firebase-config.js"></script>

@@ -58,7 +58,7 @@ A clear and concise description of any alternative solutions or features you've 
 - [ ] Mobile browsers
 - [ ] Tablet browsers
 - [ ] Progressive Web App
-- [ ] Other: ****\_\_\_****
+- [ ] Other: \***\*\_\_\_\*\***
 
 ## 🔒 Security Considerations
 

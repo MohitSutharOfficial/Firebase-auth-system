@@ -218,28 +218,52 @@ async function handleGoogleSignIn() {
     }
 }
 
-// Setup form validation
+// Setup form validation and UI enhancements
 function setupFormValidation() {
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
+    const passwordToggle = document.getElementById('passwordToggle');
+    
+    // Password visibility toggle
+    if (passwordToggle) {
+        passwordToggle.addEventListener('click', () => {
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+            passwordToggle.textContent = type === 'password' ? '👁️' : '🙈';
+        });
+    }
     
     // Real-time email validation
     emailInput.addEventListener('blur', () => {
         const email = emailInput.value.trim();
         if (email && !validateEmail(email)) {
+            emailInput.classList.add('error');
             emailInput.setCustomValidity('Please enter a valid email address');
         } else {
+            emailInput.classList.remove('error');
             emailInput.setCustomValidity('');
         }
     });
     
     // Clear validation on input
     emailInput.addEventListener('input', () => {
+        emailInput.classList.remove('error');
         emailInput.setCustomValidity('');
     });
     
     passwordInput.addEventListener('input', () => {
+        passwordInput.classList.remove('error');
         passwordInput.setCustomValidity('');
+    });
+    
+    // Add success state on valid input
+    emailInput.addEventListener('input', () => {
+        const email = emailInput.value.trim();
+        if (email && validateEmail(email)) {
+            emailInput.classList.add('success');
+        } else {
+            emailInput.classList.remove('success');
+        }
     });
 }
 

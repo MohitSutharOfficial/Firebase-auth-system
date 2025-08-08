@@ -49,23 +49,66 @@ function updateUserProfileDisplay(user) {
     const userProfileElement = document.getElementById('userProfile');
     if (userProfileElement) {
         userProfileElement.innerHTML = `
-            <div class="user-details">
-                <h3>Your Profile</h3>
-                <p><strong>Display Name:</strong> ${user.displayName || 'Not set'}</p>
-                <p><strong>Email:</strong> ${user.email}</p>
-                <p><strong>Email Verified:</strong> 
-                    <span class="${user.emailVerified ? 'text-success' : 'text-warning'}">
-                        ${user.emailVerified ? 'Yes' : 'No'}
-                    </span>
-                </p>
-                <p><strong>Account Created:</strong> ${new Date(user.metadata.creationTime).toLocaleDateString()}</p>
-                <p><strong>Last Sign In:</strong> ${new Date(user.metadata.lastSignInTime).toLocaleDateString()}</p>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Your Account Information</div>
+                    <div class="card-description">Manage your profile and account settings</div>
+                </div>
+                <div class="card-content">
+                    <div class="user-details-grid">
+                        <div class="user-detail-item">
+                            <label>Display Name:</label>
+                            <span>${user.displayName || 'Not set'}</span>
+                        </div>
+                        <div class="user-detail-item">
+                            <label>Email Address:</label>
+                            <span>${user.email}</span>
+                        </div>
+                        <div class="user-detail-item">
+                            <label>Email Verified:</label>
+                            <span class="${user.emailVerified ? 'text-success' : 'text-warning'}">
+                                ${user.emailVerified ? '✅ Verified' : '⚠️ Not Verified'}
+                            </span>
+                        </div>
+                        <div class="user-detail-item">
+                            <label>Account Created:</label>
+                            <span>${new Date(user.metadata.creationTime).toLocaleDateString()}</span>
+                        </div>
+                        <div class="user-detail-item">
+                            <label>Last Sign In:</label>
+                            <span>${new Date(user.metadata.lastSignInTime).toLocaleDateString()}</span>
+                        </div>
+                        <div class="user-detail-item">
+                            <label>User ID:</label>
+                            <span class="user-id">${user.uid}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         `;
     }
     
+    // Update header user info
+    updateHeaderUserInfo(user);
+    
     // Update email verification status
     updateEmailVerificationStatus(user);
+}
+
+// Update header user information
+function updateHeaderUserInfo(user) {
+    const userEmailElement = document.getElementById('userEmail');
+    const userAvatarElement = document.getElementById('userAvatar');
+    
+    if (userEmailElement) {
+        userEmailElement.textContent = user.email;
+    }
+    
+    if (userAvatarElement) {
+        // Show first letter of email or name
+        const initial = (user.displayName || user.email || '?').charAt(0).toUpperCase();
+        userAvatarElement.textContent = initial;
+    }
 }
 
 // Update email verification status
@@ -74,12 +117,24 @@ function updateEmailVerificationStatus(user) {
     if (verificationStatusElement) {
         if (user.emailVerified) {
             verificationStatusElement.innerHTML = `
-                <p class="text-success">✓ Your email is verified</p>
+                <div class="alert alert-success">
+                    <div class="alert-icon">✅</div>
+                    <div class="alert-content">
+                        <div class="alert-title">Email Verified</div>
+                        <div class="alert-description">Your email address is verified and secure</div>
+                    </div>
+                </div>
             `;
         } else {
             verificationStatusElement.innerHTML = `
-                <p class="text-warning">⚠ Your email is not verified</p>
-                <button id="sendVerificationBtn" class="btn btn-secondary btn-sm">
+                <div class="alert alert-warning">
+                    <div class="alert-icon">⚠️</div>
+                    <div class="alert-content">
+                        <div class="alert-title">Email Not Verified</div>
+                        <div class="alert-description">Please verify your email address for full account access</div>
+                    </div>
+                </div>
+                <button id="sendVerificationBtn" class="btn btn-outline btn-block mt-3">
                     Send Verification Email
                 </button>
             `;
@@ -314,12 +369,6 @@ onAuthStateChanged(auth, (user) => {
         
         // Update user profile display
         updateUserProfileDisplay(user);
-        
-        // Update navbar
-        const userEmailElement = document.getElementById('userEmail');
-        if (userEmailElement) {
-            userEmailElement.textContent = user.email;
-        }
         
     } else {
         // User is not authenticated

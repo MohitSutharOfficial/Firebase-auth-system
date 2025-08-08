@@ -7,13 +7,26 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Create Account</h1>
-            <a href="index.html" class="back-link">← Back to Home</a>
-        </header>
+    <div class="page-wrapper auth-page">
+        <div class="page-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <div class="brand-icon">🔥</div>
+                        <span>Firebase Auth</span>
+                    </div>
+                    <nav id="navbar">
+                        <div class="nav-links">
+                            <a href="index.html" class="nav-link">Home</a>
+                            <a href="login.html" class="nav-link">Login</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
 
-        <main>
+        <div class="page-main">
+            <div class="container">
             <div class="auth-form-container">
                 <form id="signupForm" class="auth-form">
                     <h2>Sign Up</h2>
@@ -52,7 +65,8 @@
                     </div>
                 </form>
             </div>
-        </main>
+            </div>
+        </div>
     </div>
 
     <script type="module" src="js/firebase-config.js"></script>
