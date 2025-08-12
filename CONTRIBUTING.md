@@ -16,7 +16,7 @@ Thank you for your interest in contributing to this open-source Firebase authent
 1. **Fork and Clone**
 
    ```bash
-   git clone https://github.com/MohitSutharOfficial/firebase-auth-system.git
+   git clone https://github.com/MohitSutharOfficial/Firebase-auth-system.git
    cd firebase-auth-system
    ```
 
